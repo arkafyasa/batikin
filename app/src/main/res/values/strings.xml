@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Batikin</string>
+    <string name="dummy_model">https://image.ibb.co/mpMmc7/dummy_model.png</string>
+    <string name="dummy_motif">https://image.ibb.co/jGzuVS/dummy_motif.png</string>
+    <string name="dummy_category">https://image.ibb.co/g30CH7/dummy_category.png</string>
+    <string name="dummy_batik_bg">https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg</string>
+    <string name="dummy_profile">https://image.ibb.co/m8icjn/blank_profile.png</string>
+    <string name="search_hint">Cari disini</string>
+    <string name="drawer_open">Drawer terbuka</string>
+    <string name="drawer_close">Drawer Tertutup</string>
+</resources>

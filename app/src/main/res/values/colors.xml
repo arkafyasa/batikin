@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6A594A</color>
+    <color name="colorPrimaryDark">#5F5144</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--color scheme -->
+
+    <color name="brownDark">#605144</color>
+    <color name="brownLight">#A18872</color>
+    <color name="brownLighter">#e0dfcb</color>
+    <color name="lightBorderColor">#cae0db</color>
+</resources>
