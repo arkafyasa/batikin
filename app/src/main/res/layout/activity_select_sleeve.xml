@@ -1,9 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.batikin.vocomfest.batikin.SelectSleeve">
+    android:id="@+id/drawerLayout"
+    tools:context="com.batikin.vocomfest.batikin.ModelPage">
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:id="@+id/short_sleeve"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/short_sleeve"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+                    <TextView
+                        android:textSize="15dp"
+                        android:textColor="@color/brownDark"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Lengan Pendek"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:id="@+id/long_sleeve"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/long_sleeve"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+                    <TextView
+                        android:textSize="15dp"
+                        android:textColor="@color/brownDark"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Lengan Panjang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin">
+            <LinearLayout
+                android:id="@+id/add_design"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/add_design"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:textSize="15dp"
+                    android:textColor="@color/brownDark"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Tambahkan Desain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textColor="@color/brownDark"
+            android:textStyle="bold"
+            android:text="Total Harga : Rp. 00000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:id="@+id/drawerPane"
+        android:layout_gravity="start"
+        android:layout_width="280dp"
+        android:layout_height="match_parent">
+
+        <!-- Profile Box -->
+
+        <LinearLayout
+            android:id="@+id/profileBox"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/dummy_batik_bg_dark"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp" >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/viewImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/blank_profile"
+                app:civ_border_color="#c2c2c2"
+                app:civ_border_width="3dp" />
+
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Your Profile"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/navList"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/profileBox"
+            android:choiceMode="singleChoice"
+            android:background="#FFF" />
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

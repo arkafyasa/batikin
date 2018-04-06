@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context="com.batikin.vocomfest.batikin.PilihUkuran">
+    <ImageView
+        android:id="@+id/imgSleeve"
+        android:layout_weight="1"
+        android:src="@drawable/short_sleeve"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:padding="9dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/brownLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_alignParentStart="true"
+                android:text="Standar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:text="+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/linearlayoutSize"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginRight="15dp"
+                android:background="@color/brownLighter"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="S"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="15dp"
+                android:background="@color/brownLighter"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="15dp"
+                android:background="@color/brownLighter"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="15dp"
+                android:background="@color/brownLighter"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="XL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="15dp"
+                android:background="@color/brownLighter"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:text="XXL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <RelativeLayout
+            android:padding="9dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/brownLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_alignParentStart="true"
+                android:text="Standar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:text="+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
+            android:textColor="@color/brownDark"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:text="Total Harga : Rp. 0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textColor="#FFF"
+            android:textSize="18dp"
+            android:text="KEMBALI"
+            android:background="#ff0808"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+        <Button
+            android:textColor="#FFF"
+            android:textSize="18dp"
+            android:text="LANJUT"
+            android:background="#39ff56"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
