@@ -37,7 +37,8 @@
         </activity>
         <activity android:name=".SelectSleeve" />
         <activity android:name=".PilihUkuran" />
-        <activity android:name=".AddDesign"></activity>
+        <activity android:name=".AddDesign" />
+        <activity android:name=".PilihMotif"></activity>
     </application>
 
 </manifest>
