@@ -63,7 +63,6 @@ public class AdapterModel extends RecyclerView.Adapter<AdapterModel.ModelViewHol
         @Override
         public void onClick(View view) {
             Intent modelIntent = new Intent(view.getContext(),SelectSleeve.class);
-            modelIntent.putExtra("model","meja");
             contextModel.startActivity(modelIntent);
         }
     }
