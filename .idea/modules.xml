@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Batikin.iml" filepath="$PROJECT_DIR$/Batikin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/batikin.iml" filepath="$PROJECT_DIR$/batikin.iml" />
     </modules>
   </component>
 </project>
