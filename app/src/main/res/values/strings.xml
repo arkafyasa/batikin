@@ -22,4 +22,5 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </string>
     <string name="action_settings">Settings</string>
+    <string name="lipsum_paragraph">      Lorem ipsum dolor sit amet, consectetur adipiscing  elit. Mauris  luctus ligula nisl, eu dignissim  ligula  scelerisque  quis. Duis  ut nisl   at   diam volutpat maximus. Ut ut enim risus.  Praesent   egestas   erat   eget   dolor suscipit, vitae sollicitudin nisl fringilla.Fusce sed mollis augue, ac suscipit lectus.</string>
 </resources>
