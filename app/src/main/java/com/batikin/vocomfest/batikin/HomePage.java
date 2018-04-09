@@ -1,6 +1,7 @@
 package com.batikin.vocomfest.batikin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,13 +19,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.utils.CDM;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements CDM{
 
     private RecyclerView mRecyclerCategory;
     private RecyclerView.Adapter mAdapterCategory;
@@ -39,6 +43,7 @@ public class HomePage extends AppCompatActivity {
     Context currentContext;
     TextView txtSlider;
 
+    private FirebaseAuth mAuth;
     ListView mDrawerList;
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -97,6 +102,8 @@ public class HomePage extends AppCompatActivity {
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        //firebase
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void insertDrawerItem() {
@@ -119,6 +126,17 @@ public class HomePage extends AppCompatActivity {
         }
     };
 
+    //method tambahan
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        FirebaseUser mAuth = FirebaseAuth.getInstance().getCurrentUser();
+        if (mAuth == null) {
+            Log.d(TAG, "onNavigationItemSelected: logout succesful");
+            startActivity(new Intent(this, ActivityLogin.class));
+        } else {
+            Log.d(TAG, "onNavigationItemSelected: " + mAuth.getEmail());
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (this.mDrawerToggle.onOptionsItemSelected(item)) {
@@ -138,4 +156,11 @@ public class HomePage extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() == null){
+            startActivity(new Intent(HomePage.this,ActivityLogin.class));
+        }
+    }
 }
