@@ -18,14 +18,14 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:fontFamily="cursive"
-            android:text="Edit Akun"
+            android:text="Ganti Password"
             android:textAlignment="center"
             android:textSize="20dp" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
@@ -38,22 +38,27 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/txt_account_nama"
+                android:id="@+id/txt_pengaturan_pass_lama"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="50dp"
-                android:hint="Nama User" />
+                android:layout_margin="20dp"
+                android:hint="Password Lama" />
+
+            <EditText
+                android:id="@+id/txt_pengaturan_pass_baru"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="Password baru" />
 
             <Button
                 android:id="@+id/btn_account_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:text="upload photo" />
+               android:layout_margin="20dp"
+                android:text="Ubah" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
