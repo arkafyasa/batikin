@@ -10,6 +10,6 @@
     <color name="brownLight">#A18872</color>
     <color name="brownLighter">#e0dfcb</color>
     <color name="lightBorderColor">#cae0db</color>
+    <color name="lightTransparent">#cd605144</color>
 
-    <color name="whiteColor">#FFF</color>
 </resources>
