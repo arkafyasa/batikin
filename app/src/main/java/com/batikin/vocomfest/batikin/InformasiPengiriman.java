@@ -11,16 +11,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PilihMotif extends AppCompatActivity {
-
+public class InformasiPengiriman extends AppCompatActivity {
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
 
     ListView mDrawerList;
@@ -28,16 +25,13 @@ public class PilihMotif extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
-    Spinner spinnerPulau;
-    ImageView img1,img2;
-    TextView overlay1,overlay2;
     Button btnNext,btnKembali;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pilih_motif);
-        getSupportActionBar().setTitle("Pilih Motif");
+        setContentView(R.layout.activity_informasi_pengiriman);
+        getSupportActionBar().setTitle("Informasi Pengiriman");
 
 //        Side menu drawer code
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,33 +67,35 @@ public class PilihMotif extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 //        ==============================================================
 
-        String arraySpinner[] = {"Jawa","Sumatra", "Bali","Kalimantan","Sumatera"};
-        spinnerPulau = findViewById(R.id.spinnerMotif);
-        ArrayAdapter<String> spinnerPulauAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySpinner);
-        spinnerPulauAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPulau.setAdapter(spinnerPulauAdapter);
-
-        img1 = findViewById(R.id.imgMotif1);
-        img2 = findViewById(R.id.imgMotif2);
-        overlay1 = findViewById(R.id.txtMotif1);
-        overlay2 = findViewById(R.id.txtMotif2);
-
-        img1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                overlay1.setVisibility(View.VISIBLE);
-                overlay2.setVisibility(View.GONE);
-            }
-        });
-
-        img2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                overlay1.setVisibility(View.GONE);
-                overlay2.setVisibility(View.VISIBLE);
-            }
-        });
-
+//      Spinner Provinsi
+        String arrayProvinsiSpinner[] = {"Jawa Timur","Jawa Barat","Jawa Tengah","Kalimantan Timur","Kalimantan Barat","Sumatera Utara","Sumatera Barat"};
+        Spinner spinnerProvinsi = findViewById(R.id.spinnerProvinsi);
+        ArrayAdapter<String> spinnerProvinsiAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayProvinsiSpinner);
+        spinnerProvinsiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProvinsi.setAdapter(spinnerProvinsiAdapter);
+//      =========================
+//      Spinner Kabupaten
+        String arrayKotaSpinner[] = {"Malang","Surabaya","Bandung","Jakarta"};
+        Spinner spinnerKota = findViewById(R.id.spinnerKota);
+        ArrayAdapter<String> spinnerKotaAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayKotaSpinner);
+        spinnerKotaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerKota.setAdapter(spinnerKotaAdapter);
+//      =========================
+//      Spinner Kecamatan
+        String arrayKecamatanSpinner[] = {"Lowokwaru","Klojen","Kedungkandang","Blimbing"};
+        Spinner spinnerKecamatan = findViewById(R.id.spinnerKecamatan);
+        ArrayAdapter<String> spinnerKecamatanAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayKecamatanSpinner);
+        spinnerKecamatanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerKecamatan.setAdapter(spinnerKecamatanAdapter);
+//      =========================
+//      Spinner Pengiriman
+        String arrayPengirimanSpinner[] = {"JNE","Tiki","Pos Indonesia","Ninja"};
+        Spinner spinnerPengiriman = findViewById(R.id.spinnerPengiriman);
+        ArrayAdapter<String> spinnerPengirimanAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayPengirimanSpinner);
+        spinnerPengirimanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPengiriman.setAdapter(spinnerPengirimanAdapter);
+//      =========================
+//      Button Action
         btnKembali = findViewById(R.id.btnKembali);
         btnNext = findViewById(R.id.btnNext);
         btnKembali.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +107,11 @@ public class PilihMotif extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pemesananIntent = new Intent(view.getContext(),Pemesanan.class);
-                view.getContext().startActivity(pemesananIntent);
+                Intent pesananAndaIntent = new Intent(view.getContext(),PesananAnda.class);
+                view.getContext().startActivity(pesananAndaIntent);
             }
         });
+//      =========================
     }
 
     //Drawer Function
