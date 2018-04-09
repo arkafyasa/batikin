@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "163261147197",
+    "firebase_url": "https://batikin-6d0f6.firebaseio.com",
+    "project_id": "batikin-6d0f6",
+    "storage_bucket": "batikin-6d0f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163261147197:android:4459ff315c35ee72",
+        "android_client_info": {
+          "package_name": "com.batikin.vocomfest.batikin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163261147197-48mqur8liacuvjsb6ss7g8vnohnpl976.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.batikin.vocomfest.batikin",
+            "certificate_hash": "1df68e18c3eecbc1e056971c859bf53516301d26"
+          }
+        },
+        {
+          "client_id": "163261147197-79e35g9ff18s59ue3jrsc3ceu5nd0l6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa8Rp-DJQYt2w5P2VxTR5HIevkguELpO0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163261147197-79e35g9ff18s59ue3jrsc3ceu5nd0l6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
