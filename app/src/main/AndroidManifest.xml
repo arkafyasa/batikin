@@ -38,7 +38,11 @@
         <activity android:name=".SelectSleeve" />
         <activity android:name=".PilihUkuran" />
         <activity android:name=".AddDesign" />
-        <activity android:name=".PilihMotif"></activity>
+        <activity android:name=".PilihMotif" />
+        <activity android:name=".Pemesanan" />
+        <activity android:name=".InformasiPengiriman" />
+        <activity android:name=".PesananAnda" />
+        <activity android:name=".InstruksiPembayaran"></activity>
     </application>
 
 </manifest>
