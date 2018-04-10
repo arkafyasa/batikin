@@ -48,6 +48,7 @@ public class HomePage extends AppCompatActivity implements CDM {
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class HomePage extends AppCompatActivity implements CDM {
         currentContext = this;
 
         txtSlider = findViewById(R.id.sliderText);
+        username = findViewById(R.id.userName);
 
         insertData();
         mRecyclerCategory = findViewById(R.id.recyclerCategory);
@@ -85,6 +87,18 @@ public class HomePage extends AppCompatActivity implements CDM {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+                    case 0 :
+                        startActivity(new Intent(HomePage.this,ActivityAccount.class));
+                        break;
+                    case 1 :
+                        startActivity(new Intent(HomePage.this,ActivityRiwayat.class));
+                        break;
+                    case 2 :
+                        startActivity(new Intent(HomePage.this,ActivityPengaturan.class));
+                        break;
+                    case 3 :
+                        startActivity(new Intent(HomePage.this,ActivityBantuan.class));
+                        break;
                     case 4 :
                         logout();
                         break;
@@ -108,6 +122,9 @@ public class HomePage extends AppCompatActivity implements CDM {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         //firebase
         mAuth = FirebaseAuth.getInstance();
+
+        //set data from firebase
+        username.setText(mAuth.getCurrentUser().getEmail());
     }
 
     private void insertDrawerItem() {
@@ -132,13 +149,13 @@ public class HomePage extends AppCompatActivity implements CDM {
 
     //method tambahan
     private void logout() {
-        FirebaseAuth.getInstance().signOut();
-        FirebaseUser mAuth = FirebaseAuth.getInstance().getCurrentUser();
-        if (mAuth == null) {
+        mAuth.signOut();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
             Log.d(TAG, "onNavigationItemSelected: logout succesful");
             startActivity(new Intent(this, ActivityLogin.class));
         } else {
-            Log.d(TAG, "onNavigationItemSelected: " + mAuth.getEmail());
+            Log.d(TAG, "onNavigationItemSelected: " + user.getEmail());
         }
     }
 
@@ -165,6 +182,7 @@ public class HomePage extends AppCompatActivity implements CDM {
     @Override
     protected void onStart() {
         super.onStart();
+        //cek user sudah login apa belum
         if (mAuth.getCurrentUser() == null) {
             startActivity(new Intent(HomePage.this, ActivityLogin.class));
         }

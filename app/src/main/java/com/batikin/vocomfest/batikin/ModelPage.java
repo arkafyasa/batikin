@@ -2,6 +2,7 @@ package com.batikin.vocomfest.batikin;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +21,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.batikin.vocomfest.batikin.utils.CDM;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelPage extends AppCompatActivity {
+public class ModelPage extends AppCompatActivity implements CDM{
 
     RecyclerView modelRecycler;
     List<ModelItem> modelItemList;
@@ -31,10 +38,12 @@ public class ModelPage extends AppCompatActivity {
     AdapterModel adapterModel;
     String modelName;
 
+    private FirebaseAuth mAuth;
     ListView modelDrawerList;
     RelativeLayout modelDrawerPane;
     private ActionBarDrawerToggle modelDrawerToggle;
     private DrawerLayout modelDrawerLayout;
+    private TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +51,13 @@ public class ModelPage extends AppCompatActivity {
         setContentView(R.layout.activity_model_page);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // set drawer button enabled
         modelName = getIntent().getExtras().getString("category");
-        if(modelName != null){
+        username = findViewById(R.id.userName);
+        if (modelName != null) {
             getSupportActionBar().setTitle(modelName);
         }
         modelRecycler = findViewById(R.id.recyclerModel);
         modelItemList = new ArrayList<>();
-        adapterModel = new AdapterModel(this,modelItemList);
+        adapterModel = new AdapterModel(this, modelItemList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         modelRecycler.setLayoutManager(mLayoutManager);
@@ -67,11 +77,27 @@ public class ModelPage extends AppCompatActivity {
         modelDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                switch (position) {
+                    case 0 :
+                        startActivity(new Intent(ModelPage.this,ActivityAccount.class));
+                        break;
+                    case 1 :
+                        startActivity(new Intent(ModelPage.this,ActivityRiwayat.class));
+                        break;
+                    case 2 :
+                        startActivity(new Intent(ModelPage.this,ActivityPengaturan.class));
+                        break;
+                    case 3 :
+                        startActivity(new Intent(ModelPage.this,ActivityBantuan.class));
+                        break;
+                    case 4:
+                        logout();
+                        break;
+                }
             }
         });
 
-        modelDrawerToggle = new ActionBarDrawerToggle(this, modelDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
+        modelDrawerToggle = new ActionBarDrawerToggle(this, modelDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -85,25 +111,40 @@ public class ModelPage extends AppCompatActivity {
         };
 
         modelDrawerLayout.setDrawerListener(modelDrawerToggle);
+        mAuth = FirebaseAuth.getInstance();
 
+        //set data from firebase
+        username.setText(mAuth.getCurrentUser().getEmail());
     }
 
-    public void insertData(){
-        modelItemList.add(new ModelItem(modelName + " Satu",getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Dua",getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Tiga",getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Empat",getResources().getString(R.string.dummy_model)));
+    public void insertData() {
+        modelItemList.add(new ModelItem(modelName + " Satu", getResources().getString(R.string.dummy_model)));
+        modelItemList.add(new ModelItem(modelName + " Dua", getResources().getString(R.string.dummy_model)));
+        modelItemList.add(new ModelItem(modelName + " Tiga", getResources().getString(R.string.dummy_model)));
+        modelItemList.add(new ModelItem(modelName + " Empat", getResources().getString(R.string.dummy_model)));
     }
 
     private void insertDrawerItem() {
-        navItems.add(new NavItem("ACCOUNT",R.drawable.person));
-        navItems.add(new NavItem("RIWAYAT PEMESANAN",R.drawable.time));
-        navItems.add(new NavItem("PENGATURAN",R.drawable.settings));
-        navItems.add(new NavItem("BANTUAN",R.drawable.help));
-        navItems.add(new NavItem("LOGOUT",R.drawable.power));
+        navItems.add(new NavItem("ACCOUNT", R.drawable.person));
+        navItems.add(new NavItem("RIWAYAT PEMESANAN", R.drawable.time));
+        navItems.add(new NavItem("PENGATURAN", R.drawable.settings));
+        navItems.add(new NavItem("BANTUAN", R.drawable.help));
+        navItems.add(new NavItem("LOGOUT", R.drawable.power));
     }
 
+    //method tambahan
+    private void logout() {
+        mAuth.signOut();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Log.d(TAG, "onNavigationItemSelected: logout succesful");
+            startActivity(new Intent(this, ActivityLogin.class));
+        } else {
+            Log.d(TAG, "onNavigationItemSelected: " + user.getEmail());
+        }
+    }
     //Size Configuration
+
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
@@ -172,6 +213,7 @@ public class ModelPage extends AppCompatActivity {
         boolean drawerOpen = modelDrawerLayout.isDrawerOpen(modelDrawerPane);
         return super.onPrepareOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (this.modelDrawerToggle.onOptionsItemSelected(item)) {
@@ -180,6 +222,7 @@ public class ModelPage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
