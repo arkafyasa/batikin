@@ -28,18 +28,18 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements CDM{
+public class HomePage extends AppCompatActivity implements CDM {
 
     private RecyclerView mRecyclerCategory;
     private RecyclerView.Adapter mAdapterCategory;
-    private  RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<CategoryItem> categoryItems = new ArrayList<CategoryItem>();
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
     private CarouselView carouselView;
-    private String imageSlider[] ={"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
-                                    "https://image.ibb.co/hV73Pn/slider4.jpg",
-                                    "https://image.ibb.co/jPKuVS/slider2.jpg",
-                                    "https://image.ibb.co/hToA4n/slider3.jpg"};
+    private String imageSlider[] = {"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
+            "https://image.ibb.co/hV73Pn/slider4.jpg",
+            "https://image.ibb.co/jPKuVS/slider2.jpg",
+            "https://image.ibb.co/hToA4n/slider3.jpg"};
     Context currentContext;
     TextView txtSlider;
 
@@ -64,7 +64,7 @@ public class HomePage extends AppCompatActivity implements CDM{
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerCategory.setLayoutManager(mLayoutManager);
 
-        mAdapterCategory = new AdapterCategory(this,categoryItems);
+        mAdapterCategory = new AdapterCategory(this, categoryItems);
         mRecyclerCategory.setAdapter(mAdapterCategory);
         mRecyclerCategory.setLayoutManager(mLayoutManager);
 
@@ -84,11 +84,15 @@ public class HomePage extends AppCompatActivity implements CDM{
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                switch (position){
+                    case 4 :
+                        logout();
+                        break;
+                }
             }
         });
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -107,16 +111,16 @@ public class HomePage extends AppCompatActivity implements CDM{
     }
 
     private void insertDrawerItem() {
-        navItems.add(new NavItem("ACCOUNT",R.drawable.person));
-        navItems.add(new NavItem("RIWAYAT PEMESANAN",R.drawable.time));
-        navItems.add(new NavItem("PENGATURAN",R.drawable.settings));
-        navItems.add(new NavItem("BANTUAN",R.drawable.help));
-        navItems.add(new NavItem("LOGOUT",R.drawable.power));
+        navItems.add(new NavItem("ACCOUNT", R.drawable.person));
+        navItems.add(new NavItem("RIWAYAT PEMESANAN", R.drawable.time));
+        navItems.add(new NavItem("PENGATURAN", R.drawable.settings));
+        navItems.add(new NavItem("BANTUAN", R.drawable.help));
+        navItems.add(new NavItem("LOGOUT", R.drawable.power));
     }
 
-    private void insertData(){
-        categoryItems.add(new CategoryItem("Kemeja",R.drawable.dummy_category));
-        categoryItems.add(new CategoryItem("Kaos",R.drawable.dummy_category));
+    private void insertData() {
+        categoryItems.add(new CategoryItem("Kemeja", R.drawable.dummy_category));
+        categoryItems.add(new CategoryItem("Kaos", R.drawable.dummy_category));
     }
 
     ImageListener imageListener = new ImageListener() {
@@ -137,6 +141,7 @@ public class HomePage extends AppCompatActivity implements CDM{
             Log.d(TAG, "onNavigationItemSelected: " + mAuth.getEmail());
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (this.mDrawerToggle.onOptionsItemSelected(item)) {
@@ -144,6 +149,7 @@ public class HomePage extends AppCompatActivity implements CDM{
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -159,8 +165,8 @@ public class HomePage extends AppCompatActivity implements CDM{
     @Override
     protected void onStart() {
         super.onStart();
-        if (mAuth.getCurrentUser() == null){
-            startActivity(new Intent(HomePage.this,ActivityLogin.class));
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(HomePage.this, ActivityLogin.class));
         }
     }
 }
