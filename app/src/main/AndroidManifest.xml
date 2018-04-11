@@ -23,6 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomePage" />
+        <activity android:name=".ActivityLogin" />
+        <activity android:name=".ActivityAccount" />
+        <activity android:name=".ActivityBantuan" />
+        <activity android:name=".ActivityRiwayat" />
+        <activity android:name=".ActivityPengaturan" />
+
         <activity android:name=".ModelPage">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -42,7 +48,8 @@
         <activity android:name=".Pemesanan" />
         <activity android:name=".InformasiPengiriman" />
         <activity android:name=".PesananAnda" />
-        <activity android:name=".InstruksiPembayaran"></activity>
+        <activity android:name=".InstruksiPembayaran" />
+        <activity android:name=".ActivityRegister"></activity>
     </application>
 
 </manifest>

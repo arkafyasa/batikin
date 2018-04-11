@@ -1,6 +1,7 @@
 package com.batikin.vocomfest.batikin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,30 +19,37 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.utils.CDM;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements CDM {
 
     private RecyclerView mRecyclerCategory;
     private RecyclerView.Adapter mAdapterCategory;
-    private  RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<CategoryItem> categoryItems = new ArrayList<CategoryItem>();
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
     private CarouselView carouselView;
+
     private String imageSlider[] ={"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
                                     "https://image.ibb.co/cKKdrc/batik_jawa_1.jpg",
                                     "https://image.ibb.co/gHytPx/batik_jawa_2.jpg"};
+
     Context currentContext;
     TextView txtSlider;
 
+    private FirebaseAuth mAuth;
     ListView mDrawerList;
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,7 @@ public class HomePage extends AppCompatActivity {
         currentContext = this;
 
         txtSlider = findViewById(R.id.sliderText);
+        username = findViewById(R.id.userName);
 
         insertData();
         mRecyclerCategory = findViewById(R.id.recyclerCategory);
@@ -58,7 +67,7 @@ public class HomePage extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerCategory.setLayoutManager(mLayoutManager);
 
-        mAdapterCategory = new AdapterCategory(this,categoryItems);
+        mAdapterCategory = new AdapterCategory(this, categoryItems);
         mRecyclerCategory.setAdapter(mAdapterCategory);
         mRecyclerCategory.setLayoutManager(mLayoutManager);
 
@@ -78,11 +87,27 @@ public class HomePage extends AppCompatActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                switch (position){
+                    case 0 :
+                        startActivity(new Intent(HomePage.this,ActivityAccount.class));
+                        break;
+                    case 1 :
+                        startActivity(new Intent(HomePage.this,ActivityRiwayat.class));
+                        break;
+                    case 2 :
+                        startActivity(new Intent(HomePage.this,ActivityPengaturan.class));
+                        break;
+                    case 3 :
+                        startActivity(new Intent(HomePage.this,ActivityBantuan.class));
+                        break;
+                    case 4 :
+                        logout();
+                        break;
+                }
             }
         });
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -96,14 +121,19 @@ public class HomePage extends AppCompatActivity {
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        //firebase
+        mAuth = FirebaseAuth.getInstance();
+
+        //set data from firebase
+        username.setText(mAuth.getCurrentUser().getEmail());
     }
 
     private void insertDrawerItem() {
-        navItems.add(new NavItem("ACCOUNT",R.drawable.person));
-        navItems.add(new NavItem("RIWAYAT PEMESANAN",R.drawable.time));
-        navItems.add(new NavItem("PENGATURAN",R.drawable.settings));
-        navItems.add(new NavItem("BANTUAN",R.drawable.help));
-        navItems.add(new NavItem("LOGOUT",R.drawable.power));
+        navItems.add(new NavItem("ACCOUNT", R.drawable.person));
+        navItems.add(new NavItem("RIWAYAT PEMESANAN", R.drawable.time));
+        navItems.add(new NavItem("PENGATURAN", R.drawable.settings));
+        navItems.add(new NavItem("BANTUAN", R.drawable.help));
+        navItems.add(new NavItem("LOGOUT", R.drawable.power));
     }
 
     private void insertData(){
@@ -118,6 +148,18 @@ public class HomePage extends AppCompatActivity {
         }
     };
 
+    //method tambahan
+    private void logout() {
+        mAuth.signOut();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Log.d(TAG, "onNavigationItemSelected: logout succesful");
+            startActivity(new Intent(this, ActivityLogin.class));
+        } else {
+            Log.d(TAG, "onNavigationItemSelected: " + user.getEmail());
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (this.mDrawerToggle.onOptionsItemSelected(item)) {
@@ -125,6 +167,7 @@ public class HomePage extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -137,4 +180,12 @@ public class HomePage extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //cek user sudah login apa belum
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(HomePage.this, ActivityLogin.class));
+        }
+    }
 }
