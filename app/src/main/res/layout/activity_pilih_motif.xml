@@ -49,7 +49,7 @@
                     <ImageView
                         android:id="@+id/imgMotif1"
                         android:src="@drawable/dummy_motif"
-                        android:scaleType="fitStart"
+                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -71,7 +71,7 @@
                     <ImageView
                         android:id="@+id/imgMotif2"
                         android:src="@drawable/dummy_motif"
-                        android:scaleType="fitStart"
+                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -95,7 +95,7 @@
             android:textSize="18dp"
             android:textColor="@color/brownDark"
             android:textStyle="bold"
-            android:text="Total Harga : Rp. 00000"
+            android:text="Total Harga : Rp. 185000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout

@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class Pemesanan extends AppCompatActivity {
@@ -68,12 +70,18 @@ public class Pemesanan extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 //        ==============================================================
 
+        ImageView imgModel = findViewById(R.id.imgModel);
+        ImageView imgMotif = findViewById(R.id.imgMotifPesan);
+
+        Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
+        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+
         btnKembali = findViewById(R.id.btnKembali);
         btnNext = findViewById(R.id.btnNext);
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Pemesanan.super.finish();
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {

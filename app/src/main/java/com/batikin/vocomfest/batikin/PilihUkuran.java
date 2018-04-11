@@ -148,6 +148,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.brownLighter));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
+                TextView tvHarga = findViewById(R.id.txtHarga);
+                tvHarga.setText("Total Harga : Rp. 185000");
             }
         });
 
@@ -165,7 +167,7 @@ public class PilihUkuran extends AppCompatActivity {
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                PilihUkuran.super.finish();
             }
         });
 

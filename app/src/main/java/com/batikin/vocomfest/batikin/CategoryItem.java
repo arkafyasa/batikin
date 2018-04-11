@@ -6,9 +6,9 @@ package com.batikin.vocomfest.batikin;
 
 public class CategoryItem {
     public String categoryName;
-    public int categoryImage;
+    public String categoryImage;
 
-    public CategoryItem(String categoryName, int categoryImage) {
+    public CategoryItem(String categoryName, String categoryImage) {
         this.categoryName = categoryName;
         this.categoryImage = categoryImage;
     }

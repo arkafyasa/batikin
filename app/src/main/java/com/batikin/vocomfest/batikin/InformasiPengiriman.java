@@ -101,7 +101,7 @@ public class InformasiPengiriman extends AppCompatActivity {
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                InformasiPengiriman.super.finish();
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {

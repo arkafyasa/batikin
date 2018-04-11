@@ -33,9 +33,8 @@ public class HomePage extends AppCompatActivity {
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
     private CarouselView carouselView;
     private String imageSlider[] ={"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
-                                    "https://image.ibb.co/hV73Pn/slider4.jpg",
-                                    "https://image.ibb.co/jPKuVS/slider2.jpg",
-                                    "https://image.ibb.co/hToA4n/slider3.jpg"};
+                                    "https://image.ibb.co/cKKdrc/batik_jawa_1.jpg",
+                                    "https://image.ibb.co/gHytPx/batik_jawa_2.jpg"};
     Context currentContext;
     TextView txtSlider;
 
@@ -108,8 +107,8 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void insertData(){
-        categoryItems.add(new CategoryItem("Kemeja",R.drawable.dummy_category));
-        categoryItems.add(new CategoryItem("Kaos",R.drawable.dummy_category));
+        categoryItems.add(new CategoryItem("Kemeja","https://image.ibb.co/jObKgc/kemeja_category.jpg"));
+        categoryItems.add(new CategoryItem("Kaos","https://image.ibb.co/ghqUgc/kaos_category.jpg"));
     }
 
     ImageListener imageListener = new ImageListener() {
