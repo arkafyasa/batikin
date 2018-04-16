@@ -17,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class PilihMotif extends AppCompatActivity {
@@ -84,11 +86,16 @@ public class PilihMotif extends AppCompatActivity {
         overlay1 = findViewById(R.id.txtMotif1);
         overlay2 = findViewById(R.id.txtMotif2);
 
+        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(img1);
+        Picasso.with(this).load("https://image.ibb.co/gHytPx/batik_jawa_2.jpg").into(img2);
+
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 overlay1.setVisibility(View.VISIBLE);
                 overlay2.setVisibility(View.GONE);
+                TextView tvHarga = findViewById(R.id.txtHarga);
+                tvHarga.setText("Total Harga : Rp. 200000");
             }
         });
 
@@ -97,6 +104,8 @@ public class PilihMotif extends AppCompatActivity {
             public void onClick(View view) {
                 overlay1.setVisibility(View.GONE);
                 overlay2.setVisibility(View.VISIBLE);
+                TextView tvHarga = findViewById(R.id.txtHarga);
+                tvHarga.setText("Total Harga : Rp. 200000");
             }
         });
 
@@ -105,7 +114,7 @@ public class PilihMotif extends AppCompatActivity {
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                PilihMotif.super.finish();
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -39,7 +41,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.catego
     public void onBindViewHolder(AdapterCategory.categoryViewHolder holder, int position) {
         CategoryItem currentItem = categoryItem.get(position);
         holder.categoryText.setText(currentItem.categoryName);
-        holder.categoryImg.setImageResource(currentItem.categoryImage);
+        Picasso.with(currentContext).load(currentItem.categoryImage).into(holder.categoryImg);
     }
 
     @Override

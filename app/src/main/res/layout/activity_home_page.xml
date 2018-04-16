@@ -23,7 +23,7 @@
             app:strokeWidth="1dp"/>
         <TextView
             android:id="@+id/sliderText"
-            android:text="SAMPLE CAROUSEL TEXT"
+            android:text="SELAMAT DATANG DI APLIKASI BATIKIN"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp" />

@@ -126,13 +126,14 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <TextView
+                android:id="@+id/txtHarga"
                 android:layout_gravity="center_horizontal"
                 android:padding="5dp"
                 android:textColor="@color/brownDark"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_alignParentEnd="true"
-                android:text="Total Harga : Rp. 0000"
+                android:text="Total Harga : Rp. 170000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

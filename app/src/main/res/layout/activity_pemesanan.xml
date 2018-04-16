@@ -28,9 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
                 <ImageView
+                    android:id="@+id/imgModel"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-
                     android:src="@drawable/dummy_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -49,6 +49,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:id="@+id/imgMotifPesan"
                         android:padding="5dp"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
@@ -65,7 +66,6 @@
                     android:layout_weight="1"
                     android:columnCount="3"
                     android:rowCount="2"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
@@ -75,7 +75,7 @@
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
                         android:text="Model"
-                        android:layout_width="match_parent"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_column="0"
@@ -84,7 +84,7 @@
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
                         android:text="Motif batik "
-                        android:layout_width="match_parent"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_column="1"
@@ -93,7 +93,7 @@
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
                         android:text=":"
-                        android:layout_width="match_parent"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_column="1"
@@ -102,14 +102,14 @@
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
                         android:text=":"
-                        android:layout_width="match_parent"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_column="2"
                         android:layout_row="0"
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
-                        android:text="Model01"
+                        android:text="Kemeja Sa.."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -117,7 +117,7 @@
                         android:layout_row="1"
                         android:textColor="@color/brownDark"
                         android:textSize="15dp"
-                        android:text="Motif02"
+                        android:text="Jawa01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </GridLayout>
@@ -196,8 +196,6 @@
                 android:src="@drawable/blank_profile"
                 app:civ_border_color="#c2c2c2"
                 app:civ_border_width="3dp" />
-
-
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"

@@ -10,8 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -63,13 +66,19 @@ public class PesananAnda extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 //        ==============================================================
 
+        ImageView imgModel = findViewById(R.id.imgModel);
+        ImageView imgMotif = findViewById(R.id.imgMotifPesan);
+
+        Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
+        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+
         //      Button Action
         btnKembali = findViewById(R.id.btnKembali);
         btnNext = findViewById(R.id.btnNext);
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                PesananAnda.super.finish();
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {

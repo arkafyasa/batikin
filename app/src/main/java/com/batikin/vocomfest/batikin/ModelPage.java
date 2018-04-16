@@ -117,11 +117,11 @@ public class ModelPage extends AppCompatActivity implements CDM{
         username.setText(mAuth.getCurrentUser().getEmail());
     }
 
-    public void insertData() {
-        modelItemList.add(new ModelItem(modelName + " Satu", getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Dua", getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Tiga", getResources().getString(R.string.dummy_model)));
-        modelItemList.add(new ModelItem(modelName + " Empat", getResources().getString(R.string.dummy_model)));
+    public void insertData(){
+        modelItemList.add(new ModelItem("Kemeja anak","https://image.ibb.co/eacgux/model_anak.jpg"));
+        modelItemList.add(new ModelItem("Kemeja formal","https://image.ibb.co/jvqegc/model_formal.jpg"));
+        modelItemList.add(new ModelItem("Kemeja santai","https://image.ibb.co/hxmKgc/model_santai.jpg"));
+        modelItemList.add(new ModelItem("Kemeja slimfit","https://image.ibb.co/iXNxZx/model_slimfit.jpg"));
     }
 
     private void insertDrawerItem() {

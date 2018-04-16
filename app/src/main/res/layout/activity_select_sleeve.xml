@@ -100,7 +100,7 @@
             android:textSize="18dp"
             android:textColor="@color/brownDark"
             android:textStyle="bold"
-            android:text="Total Harga : Rp. 00000"
+            android:text="Total Harga : Rp. 170000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

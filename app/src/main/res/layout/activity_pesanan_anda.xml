@@ -35,9 +35,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
                     <ImageView
+                        android:id="@+id/imgModel"
                         android:layout_weight="1"
                         android:layout_gravity="center"
-
                         android:src="@drawable/dummy_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -56,6 +56,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                         <ImageView
+                            android:id="@+id/imgMotifPesan"
                             android:padding="5dp"
                             android:layout_weight="1"
                             android:scaleType="fitXY"
