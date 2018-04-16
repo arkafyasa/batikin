@@ -24,6 +24,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.model.PemesananModel;
+
 import java.util.ArrayList;
 
 public class PilihUkuran extends AppCompatActivity {
@@ -39,14 +41,19 @@ public class PilihUkuran extends AppCompatActivity {
     TextView txtS,txtM,txtL,txtXL,txtXXL;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    static String tepmUkuran = "L";
 
+    PemesananModel mPemesananModel ;
+    TextView tvHarga;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_ukuran);
+        mPemesananModel = getIntent().getExtras().getParcelable("pemesanan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Pilih Ukuran");
         imgSleeve = findViewById(R.id.imgSleeve);
+        tvHarga = findViewById(R.id.txtHarga);
         imgRes = getIntent().getExtras().getInt("sleeve");
         if(imgRes != 0){
             imgSleeve.setImageResource(imgRes);
@@ -115,6 +122,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
+                tepmUkuran = "S";
+                tvHarga.setText("170000");
             }
         });
 
@@ -126,6 +135,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
+                tepmUkuran = "M";
+                tvHarga.setText("175000");
             }
         });
 
@@ -137,6 +148,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.brownLighter));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
+                tepmUkuran = "L";
+                tvHarga.setText("180000");
             }
         });
 
@@ -148,8 +161,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.brownLighter));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
-                TextView tvHarga = findViewById(R.id.txtHarga);
-                tvHarga.setText("Total Harga : Rp. 185000");
+                tepmUkuran = "XL";
+                tvHarga.setText("185000");
             }
         });
 
@@ -161,6 +174,8 @@ public class PilihUkuran extends AppCompatActivity {
                 txtL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXL.setBackgroundColor(getResources().getColor(R.color.whiteColor));
                 txtXXL.setBackgroundColor(getResources().getColor(R.color.brownLighter));
+                tepmUkuran = "XXL";
+                tvHarga.setText("190000");
             }
         });
 
@@ -175,6 +190,9 @@ public class PilihUkuran extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent pilihMotifIntent = new Intent(view.getContext(),PilihMotif.class);
+                mPemesananModel.setUkuran(tepmUkuran);
+                mPemesananModel.setHarga(tvHarga.getText().toString());
+                pilihMotifIntent.putExtra("pemesanan", mPemesananModel);
                 view.getContext().startActivity(pilihMotifIntent);
             }
         });

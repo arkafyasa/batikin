@@ -5,6 +5,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.batikin.vocomfest.batikin.model.PemesananModel;
+import com.batikin.vocomfest.batikin.utils.CDM;
+
 import java.util.ArrayList;
 
-public class SelectSleeve extends AppCompatActivity {
+public class SelectSleeve extends AppCompatActivity implements CDM {
     String modelName;
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
 
@@ -24,11 +28,17 @@ public class SelectSleeve extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
+    PemesananModel mPemesananModel ;
+
     LinearLayout btnShortSleeve,btnLongSleeve,btnAddDesign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sleeve);
+
+        mPemesananModel = getIntent().getExtras().getParcelable("pemesanan");
+
+        Log.d(TAG, "onCreate: "+mPemesananModel.getModel());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Pilih Model");
 
@@ -72,6 +82,8 @@ public class SelectSleeve extends AppCompatActivity {
             public void onClick(View view) {
                 Intent shortSleeveIntent = new Intent(view.getContext(),PilihUkuran.class);
                 shortSleeveIntent.putExtra("sleeve",R.drawable.short_sleeve);
+                mPemesananModel.setModel("Lengan Pendek");
+                shortSleeveIntent.putExtra("pemesanan", mPemesananModel);
                 view.getContext().startActivity(shortSleeveIntent);
             }
         });
@@ -81,6 +93,8 @@ public class SelectSleeve extends AppCompatActivity {
             public void onClick(View view) {
                 Intent longSleeveIntent = new Intent(view.getContext(),PilihUkuran.class);
                 longSleeveIntent.putExtra("sleeve",R.drawable.long_sleeve);
+                mPemesananModel.setModel("Lengan Pendek");
+                longSleeveIntent.putExtra("pemesanan", mPemesananModel);
                 view.getContext().startActivity(longSleeveIntent);
             }
         });

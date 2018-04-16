@@ -37,9 +37,9 @@ public class HomePage extends AppCompatActivity implements CDM {
     private ArrayList<NavItem> navItems = new ArrayList<NavItem>();
     private CarouselView carouselView;
 
-    private String imageSlider[] ={"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
-                                    "https://image.ibb.co/cKKdrc/batik_jawa_1.jpg",
-                                    "https://image.ibb.co/gHytPx/batik_jawa_2.jpg"};
+    private String imageSlider[] = {"https://image.ibb.co/iwaq4n/dummy_batik_bg.jpg",
+            "https://image.ibb.co/cKKdrc/batik_jawa_1.jpg",
+            "https://image.ibb.co/gHytPx/batik_jawa_2.jpg"};
 
     Context currentContext;
     TextView txtSlider;
@@ -87,20 +87,20 @@ public class HomePage extends AppCompatActivity implements CDM {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0 :
-                        startActivity(new Intent(HomePage.this,ActivityAccount.class));
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(HomePage.this, ActivityAccount.class));
                         break;
-                    case 1 :
-                        startActivity(new Intent(HomePage.this,ActivityRiwayat.class));
+                    case 1:
+                        startActivity(new Intent(HomePage.this, ActivityRiwayat.class));
                         break;
-                    case 2 :
-                        startActivity(new Intent(HomePage.this,ActivityPengaturan.class));
+                    case 2:
+                        startActivity(new Intent(HomePage.this, ActivityPengaturan.class));
                         break;
-                    case 3 :
-                        startActivity(new Intent(HomePage.this,ActivityBantuan.class));
+                    case 3:
+                        startActivity(new Intent(HomePage.this, ActivityBantuan.class));
                         break;
-                    case 4 :
+                    case 4:
                         logout();
                         break;
                 }
@@ -124,8 +124,10 @@ public class HomePage extends AppCompatActivity implements CDM {
         //firebase
         mAuth = FirebaseAuth.getInstance();
 
-        //set data from firebase
-        username.setText(mAuth.getCurrentUser().getEmail());
+        if (mAuth.getCurrentUser() != null) {
+            //set data from firebase
+            username.setText(mAuth.getCurrentUser().getEmail());
+        }
     }
 
     private void insertDrawerItem() {
@@ -136,9 +138,9 @@ public class HomePage extends AppCompatActivity implements CDM {
         navItems.add(new NavItem("LOGOUT", R.drawable.power));
     }
 
-    private void insertData(){
-        categoryItems.add(new CategoryItem("Kemeja","https://image.ibb.co/jObKgc/kemeja_category.jpg"));
-        categoryItems.add(new CategoryItem("Kaos","https://image.ibb.co/ghqUgc/kaos_category.jpg"));
+    private void insertData() {
+        categoryItems.add(new CategoryItem("Kemeja", "https://image.ibb.co/jObKgc/kemeja_category.jpg"));
+        categoryItems.add(new CategoryItem("Kaos", "https://image.ibb.co/ghqUgc/kaos_category.jpg"));
     }
 
     ImageListener imageListener = new ImageListener() {

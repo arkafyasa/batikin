@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.model.PemesananModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,12 +35,16 @@ public class PilihMotif extends AppCompatActivity {
     ImageView img1,img2;
     TextView overlay1,overlay2;
     Button btnNext,btnKembali;
-
+    TextView tvHarga;
+    static String motif = "parang";
+    PemesananModel mPemesananModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_motif);
+        mPemesananModel = getIntent().getExtras().getParcelable("pemesanan");
         getSupportActionBar().setTitle("Pilih Motif");
+         tvHarga = findViewById(R.id.txtHarga);
 
 //        Side menu drawer code
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,7 +80,7 @@ public class PilihMotif extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 //        ==============================================================
 
-        String arraySpinner[] = {"Jawa","Sumatra", "Bali","Kalimantan","Sumatera"};
+        String arraySpinner[] = {"Jawa"};
         spinnerPulau = findViewById(R.id.spinnerMotif);
         ArrayAdapter<String> spinnerPulauAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySpinner);
         spinnerPulauAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -94,8 +99,10 @@ public class PilihMotif extends AppCompatActivity {
             public void onClick(View view) {
                 overlay1.setVisibility(View.VISIBLE);
                 overlay2.setVisibility(View.GONE);
-                TextView tvHarga = findViewById(R.id.txtHarga);
-                tvHarga.setText("Total Harga : Rp. 200000");
+                tvHarga.setText("Total Harga : Rp. 50000");
+                mPemesananModel.setHarga(String.valueOf(Integer.valueOf(mPemesananModel.getHarga())+50000) );
+                motif = "kawung";
+
             }
         });
 
@@ -104,8 +111,9 @@ public class PilihMotif extends AppCompatActivity {
             public void onClick(View view) {
                 overlay1.setVisibility(View.GONE);
                 overlay2.setVisibility(View.VISIBLE);
-                TextView tvHarga = findViewById(R.id.txtHarga);
-                tvHarga.setText("Total Harga : Rp. 200000");
+                tvHarga.setText("Total Harga : Rp. 60000");
+                mPemesananModel.setHarga(String.valueOf(Integer.valueOf(mPemesananModel.getHarga())+60000) );
+                motif = "parang";
             }
         });
 
@@ -121,6 +129,8 @@ public class PilihMotif extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent pemesananIntent = new Intent(view.getContext(),Pemesanan.class);
+                mPemesananModel.setMotif(motif);
+                pemesananIntent.putExtra("pemesanan", mPemesananModel);
                 view.getContext().startActivity(pemesananIntent);
             }
         });
