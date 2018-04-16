@@ -2,6 +2,7 @@ package com.batikin.vocomfest.batikin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.model.PemesananModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,11 +39,15 @@ public class AdapterModel extends RecyclerView.Adapter<AdapterModel.ModelViewHol
 
     @Override
     public void onBindViewHolder(ModelViewHolder holder, int position) {
-        ModelItem model = modelItemList.get(position);
+        final ModelItem model = modelItemList.get(position);
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(contextModel, SelectSleeve.class);
+                PemesananModel mPemesanan =  new PemesananModel();
+                mPemesanan.setKategori(model.modelName);
+                intent.putExtra("pemesanan", (Parcelable) mPemesanan);
                 contextModel.startActivity(intent);
             }
         });
