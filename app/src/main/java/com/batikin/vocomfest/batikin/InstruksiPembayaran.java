@@ -12,6 +12,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.batikin.vocomfest.batikin.model.PemesananModel;
 
 import java.util.ArrayList;
 
@@ -23,13 +26,32 @@ public class InstruksiPembayaran extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
+    TextView txtNoTrans;
+    TextView ttxTotalBiaya;
+    TextView txtPengiriman;
+
+    PemesananModel mPemesananModel;
+    static String noTransaksi = "";
     Button btnNext,btnKembali;
+    static String pengiriman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruksi_pembayaran);
         getSupportActionBar().setTitle("Instruksi Pembayaran");
+
+        mPemesananModel = getIntent().getExtras().getParcelable("pemesanan");
+        noTransaksi = getIntent().getExtras().getString("notransaksi");
+        pengiriman = getIntent().getExtras().getString("pengiriman");
+
+        txtNoTrans = findViewById(R.id.txtNoTranss);
+        ttxTotalBiaya = findViewById(R.id.txtTotalBiayah);
+        txtPengiriman = findViewById(R.id.txtPengirimanLewat);
+
+        txtNoTrans.setText("No. Transaksi :"+noTransaksi);
+        txtPengiriman.setText(pengiriman);
+        ttxTotalBiaya.setText("Rp. "+mPemesananModel.getHarga());
 //        Side menu drawer code
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         insertDrawerItem();

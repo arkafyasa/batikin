@@ -61,7 +61,7 @@ public class Pemesanan extends AppCompatActivity implements CDM {
             desc.setText("Parang berasal dari kata pereng atau miring. Bentuk motifnya berbentuk seperti huruf “S” miring berombak memanjang.Motif Parang ini tersebar di seluruh Jawa, mulai dari Jawa Tegah, Jogjakarta dan Jawa Barat. Biasanya, perbedaannya hanya terletak pada aksen dari batik Motif parang tersebut. Misalkan, di Jogja ada motif Parang Rusak dan Parang Barong, di Jawa Tengah ada Parang Slobog, serta di Jawa Barat ada Parang Klisik.");
         }
 
-        Log.d(TAG, "onCreate: "+mPemesananModel.getMotif()+mPemesananModel.getModel()+mPemesananModel.getKategori()+mPemesananModel.getHarga()+mPemesananModel.getUkuran());
+        Log.d(TAG, "onCreate: " + mPemesananModel.getMotif() + mPemesananModel.getModel() + mPemesananModel.getKategori() + mPemesananModel.getHarga() + mPemesananModel.getUkuran());
 //        Side menu drawer code
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         insertDrawerItem();
@@ -97,10 +97,32 @@ public class Pemesanan extends AppCompatActivity implements CDM {
 //        ==============================================================
 
         ImageView imgModel = findViewById(R.id.imgModel);
+        ImageView imgKategori = findViewById(R.id.modelmodel);
         ImageView imgMotif = findViewById(R.id.imgMotifPesan);
 
-        Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
-        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+
+        if (mPemesananModel.getKategori().equalsIgnoreCase("Lengan Pendek")) {
+            imgKategori.setImageResource(getResources().getIdentifier("com.batikin.vocomfest.batikin:drawable/short_sleeve.png", null, null));
+        } else if (mPemesananModel.getKategori().equalsIgnoreCase("Lengan Panjang")) {
+            imgKategori.setImageResource(getResources().getIdentifier("com.batikin.vocomfest.batikin:drawable/long_sleeve.png", null, null));
+        } else {
+
+        }
+        if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja anak")) {
+            Picasso.with(this).load("https://image.ibb.co/eacgux/model_anak.jpg").into(imgModel);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja formal")) {
+            Picasso.with(this).load("https://image.ibb.co/jvqegc/model_formal.jpg").into(imgModel);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja santai")) {
+            Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja slimfit")) {
+            Picasso.with(this).load("https://image.ibb.co/iXNxZx/model_slimfit.jpg").into(imgModel);
+        }
+
+        if (mPemesananModel.getMotif().equalsIgnoreCase("kawung")) {
+            Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+        } else if (mPemesananModel.getMotif().equalsIgnoreCase("parang")) {
+            Picasso.with(this).load("https://image.ibb.co/gHytPx/batik_jawa_2.jpg").into(imgMotif);
+        }
 
         btnKembali = findViewById(R.id.btnKembali);
         btnNext = findViewById(R.id.btnNext);
@@ -114,6 +136,7 @@ public class Pemesanan extends AppCompatActivity implements CDM {
             @Override
             public void onClick(View view) {
                 Intent informasiPengirimanIntent = new Intent(view.getContext(), InformasiPengiriman.class);
+                informasiPengirimanIntent.putExtra("pemesanan", mPemesananModel);
                 view.getContext().startActivity(informasiPengirimanIntent);
             }
         });

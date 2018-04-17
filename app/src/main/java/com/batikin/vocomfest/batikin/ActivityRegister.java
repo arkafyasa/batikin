@@ -89,10 +89,10 @@ public class ActivityRegister extends AppCompatActivity implements CDM, View.OnC
         //getUID
         String uid = user.getUid();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         //get
         HashMap<String, User> hashMap = new HashMap<>();
-        hashMap.put("object", new User(nama, email, "default"));
+        hashMap.put(uid, new User(nama, email, "default"));
 
         mDatabase.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

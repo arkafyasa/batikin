@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.batikin.vocomfest.batikin.model.PemesananModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,12 +27,54 @@ public class PesananAnda extends AppCompatActivity {
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-
     Button btnNext,btnKembali;
+    PemesananModel mPemesananModel;
+    static String noTransaksi = "";
+    ImageView imgKategori;
+    ImageView imgMotif;
+    ImageView imgModels;
+    TextView totalTextView;
+    static String pengiriman;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesanan_anda);
+
+        mPemesananModel = getIntent().getExtras().getParcelable("pemesanan");
+        noTransaksi = getIntent().getExtras().getString("notransaksi");
+        pengiriman = getIntent().getExtras().getString("pengiriman");
+
+        imgKategori = findViewById(R.id.imgKategories);
+        imgModels = findViewById(R.id.imgModel);
+        imgMotif = findViewById(R.id.imgMotifPesan);
+        totalTextView = findViewById(R.id.txtTotalBayarr);
+
+        if (mPemesananModel.getKategori().equalsIgnoreCase("Lengan Pendek")) {
+            imgKategori.setImageResource(getResources().getIdentifier("com.batikin.vocomfest.batikin:drawable/short_sleeve.png", null, null));
+        } else if (mPemesananModel.getKategori().equalsIgnoreCase("Lengan Panjang")) {
+            imgKategori.setImageResource(getResources().getIdentifier("com.batikin.vocomfest.batikin:drawable/long_sleeve.png", null, null));
+        } else {
+
+        }
+        if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja anak")) {
+            Picasso.with(this).load("https://image.ibb.co/eacgux/model_anak.jpg").into(imgModels);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja formal")) {
+            Picasso.with(this).load("https://image.ibb.co/jvqegc/model_formal.jpg").into(imgModels);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja santai")) {
+            Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModels);
+        } else if (mPemesananModel.getModel().equalsIgnoreCase("Kemeja slimfit")) {
+            Picasso.with(this).load("https://image.ibb.co/iXNxZx/model_slimfit.jpg").into(imgModels);
+        }
+
+        if (mPemesananModel.getMotif().equalsIgnoreCase("kawung")) {
+            Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+        } else if (mPemesananModel.getMotif().equalsIgnoreCase("parang")) {
+            Picasso.with(this).load("https://image.ibb.co/gHytPx/batik_jawa_2.jpg").into(imgMotif);
+        }
+
+
         getSupportActionBar().setTitle("Pesanan Anda");
 //        Side menu drawer code
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -66,11 +110,11 @@ public class PesananAnda extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 //        ==============================================================
 
-        ImageView imgModel = findViewById(R.id.imgModel);
-        ImageView imgMotif = findViewById(R.id.imgMotifPesan);
-
-        Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
-        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
+//        ImageView imgModel = findViewById(R.id.imgModel);
+//        ImageView imgMotif = findViewById(R.id.imgMotifPesan);
+//
+//        Picasso.with(this).load("https://image.ibb.co/hxmKgc/model_santai.jpg").into(imgModel);
+//        Picasso.with(this).load("https://image.ibb.co/cKKdrc/batik_jawa_1.jpg").into(imgMotif);
 
         //      Button Action
         btnKembali = findViewById(R.id.btnKembali);
@@ -85,6 +129,9 @@ public class PesananAnda extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent instruksiPembayaranIntent = new Intent(view.getContext(),InstruksiPembayaran.class);
+                instruksiPembayaranIntent.putExtra("pemesanan", mPemesananModel);
+                instruksiPembayaranIntent.putExtra("pengiriman",pengiriman);
+                instruksiPembayaranIntent.putExtra("notransaksi",noTransaksi);
                 view.getContext().startActivity(instruksiPembayaranIntent);
             }
         });
